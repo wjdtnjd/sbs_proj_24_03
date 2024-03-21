@@ -50,7 +50,7 @@ public class Main {
                   continue;
               }
               System.out.println("번호 : 조회 : 제목");
-              for ( int i = 0; i < articles.size(); i++) {
+              for ( int i = articles.size() - 1; i >= 0 ; i--) {
                   Article article = articles.get(i);
 
                   System.out.printf("%4d : %4d : %s\n", article.id,article.hit, article.title);
@@ -125,7 +125,7 @@ public class Main {
                   Article article = articles.get(i);
 
                   if ( article.id == id) {
-                      foundIndex = -1;
+                      foundIndex = i;
                       break;
                   }
               }
