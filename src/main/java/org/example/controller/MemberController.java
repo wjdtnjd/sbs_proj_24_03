@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.Article;
 import org.example.dto.Member;
 import org.example.util.Util;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MemberController extends Controller{
+public class MemberController extends Controller {
     private Scanner sc;
     private List<Member> members;
     private String cmd;
@@ -24,8 +25,9 @@ public class MemberController extends Controller{
         this.actionMethodName = actionMethodName;
 
         switch ( actionMethodName ) {
-            case "join" :
+            case "join":
                 doJoin();
+                break;
             case "login":
                 doLogin();
                 break;
@@ -33,7 +35,17 @@ public class MemberController extends Controller{
                 System.out.println("존재하지 않는 명령어 입니다.");
                 break;
         }
+
     }
+
+    public void makeTestData() {
+        System.out.println("테스트를 위한 회원 데이터를 생성합니다");
+
+        members.add(new Member(1, Util.getNowDateStr(), "admin", "admin", "관리자"));
+        members.add(new Member(2, Util.getNowDateStr(), "user 1", "user 1", "홍길동"));
+        members.add(new Member(3, Util.getNowDateStr(), "user 2", "user 2", "홍길순"));
+    }
+
     public void doJoin() {
         int id = members.size() + 1;
         String regDate = Util.getNowDateStr();
@@ -79,9 +91,9 @@ public class MemberController extends Controller{
     }
 
     public void doLogin() {
-        System.out.printf("로그인 아이디 :");
+        System.out.printf("로그인 아이디 : ");
         String loginId = sc.nextLine();
-        System.out.printf("로그인 비밀번호 :");
+        System.out.printf("로그인 비번 : ");
         String loginPw = sc.nextLine();
 
         Member member = getMemberByLoginId(loginId);
@@ -97,7 +109,7 @@ public class MemberController extends Controller{
         }
 
         loginedMember = member;
-        System.out.printf("로그인 성공! %s님 환영합니다.\n", loginedMember.name);
+        System.out.printf("로그인 성공! %s님 환영합니다!\n", loginedMember.name);
     }
 
     private boolean isJoinableLoginId(String loginId) {
@@ -126,9 +138,10 @@ public class MemberController extends Controller{
     private Member getMemberByLoginId(String loginId) {
         int index = getMemberIndexByLoginId(loginId);
 
-        if (index == -1) {
+        if ( index == -1 ) {
             return null;
         }
+
         return members.get(index);
     }
 }

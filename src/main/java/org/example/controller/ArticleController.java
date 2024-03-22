@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArticleController extends Controller {
+public class ArticleController extends Controller{
     private Scanner sc;
     private List<Article> articles;
     private String cmd;
@@ -19,29 +19,31 @@ public class ArticleController extends Controller {
     }
 
     public void doAction(String cmd, String actionMethodName) {
-            this.cmd = cmd;
-            this.actionMethodName = actionMethodName;
+        this.cmd = cmd;
+        this.actionMethodName = actionMethodName;
 
-            switch ( actionMethodName ) {
-                case "write" :
-                    doWrite();
-                    break;
-                case "list" :
-                    showList();
-                    break;
-                case "detail" :
-                    showDetail();
-                    break;
-                case "modify" :
-                    doModify();
-                    break;
-                case "delete" :
-                    doDelete();
-                    break;
-                default:
-                    System.out.println("존재하지 않는 명령어 입니다.");
-                    break;
+        switch ( actionMethodName ) {
+            case "write":
+                doWrite();
+                break;
+            case "list":
+                showList();
+                break;
+            case "detail":
+                showDetail();
+                break;
+            case "modify":
+                doModify();
+                break;
+            case "delete":
+                doDelete();
+                break;
+            default:
+                System.out.println("존재하지 않는 명령어 입니다.");
+                break;
         }
+
+
     }
 
     public void makeTestData() {
@@ -101,7 +103,7 @@ public class ArticleController extends Controller {
 
     public void showDetail() {
         String[] cmdBits = cmd.split(" ");
-        int id = Integer.parseInt(cmdBits[2]); // "1" => 1
+        int id = Integer.parseInt(cmdBits[2]);
 
         Article foundArticle = getArticleById(id);
 

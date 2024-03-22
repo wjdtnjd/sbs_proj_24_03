@@ -14,7 +14,9 @@ public class App {
 
         MemberController memberController = new MemberController(sc);
         ArticleController articleController = new ArticleController(sc);
+
         articleController.makeTestData();
+        memberController.makeTestData();
 
         while ( true ) {
             System.out.printf("명령어) ");
@@ -29,20 +31,20 @@ public class App {
                 break;
             }
 
-            String[] cmdBits = cmd.split(" ");      // article write or member join
-           String controllerName = cmdBits[0];             // article or member
-           String actionMethodName = cmdBits[1];           // write or list
+            String[] cmdBits = cmd.split(" "); // article write / member join
+            String controllerName = cmdBits[0]; // article / member
+            String actionMethodName = cmdBits[1]; // write / join
 
             Controller controller = null;
 
-            if ( controllerName.equals("article")) {
+            if ( controllerName.equals("article") ) {
                 controller = articleController;
             }
-            else if ( controllerName.equals("member")) {
+            else if ( controllerName.equals("member") ) {
                 controller = memberController;
             }
             else {
-                System.out.println("존재하지 않는 명령어 입니다.");
+                System.out.println("존재하지 않는 명령어입니다.");
                 continue;
             }
 
