@@ -14,7 +14,6 @@ public class MemberController extends Controller {
     private String cmd;
     private String actionMethodName;
 
-
     public MemberController(Scanner sc) {
         this.sc = sc;
         members = new ArrayList<>();
@@ -41,14 +40,12 @@ public class MemberController extends Controller {
 
     }
 
-
-
     public void makeTestData() {
-        System.out.println("테스트를 위한 회원 데이터를 생성합니다");
+        System.out.println("테스트를 위한 회원 데이터를 생성합니다.");
 
         members.add(new Member(1, Util.getNowDateStr(), "admin", "admin", "관리자"));
-        members.add(new Member(2, Util.getNowDateStr(), "user 1", "user 1", "홍길동"));
-        members.add(new Member(3, Util.getNowDateStr(), "user 2", "user 2", "홍길순"));
+        members.add(new Member(2, Util.getNowDateStr(), "user1", "user1", "홍길동"));
+        members.add(new Member(3, Util.getNowDateStr(), "user2", "user2", "홍길순"));
     }
 
     public void doJoin() {
@@ -96,10 +93,11 @@ public class MemberController extends Controller {
     }
 
     public void doLogin() {
-        if ( isLongined() ) {
+        if ( isLogined() ) {
             System.out.println("이미 로그인 되어 있습니다.");
             return;
         }
+
         System.out.printf("로그인 아이디 : ");
         String loginId = sc.nextLine();
         System.out.printf("로그인 비번 : ");
@@ -121,15 +119,16 @@ public class MemberController extends Controller {
         System.out.printf("로그인 성공! %s님 환영합니다!\n", loginedMember.name);
     }
 
-
     private void doLogout() {
-        if ( isLongined() == false ) {
+        if ( isLogined() == false ) {
             System.out.println("로그인 상태가 아닙니다.");
             return;
         }
+
         loginedMember = null;
         System.out.println("로그아웃 되었습니다.");
     }
+
     private boolean isJoinableLoginId(String loginId) {
         int index = getMemberIndexByLoginId(loginId);
 

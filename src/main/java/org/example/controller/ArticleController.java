@@ -24,7 +24,7 @@ public class ArticleController extends Controller{
 
         switch ( actionMethodName ) {
             case "write":
-                if ( isLongined() == false ) {
+                if ( isLogined() == false ) {
                     System.out.println("로그인 후 이용해주세요.");
                     break;
                 }
@@ -51,11 +51,11 @@ public class ArticleController extends Controller{
     }
 
     public void makeTestData() {
-        System.out.println("테스트를 위한 게시물 데이터를 생성합니다");
+        System.out.println("테스트를 위한 게시물 데이터를 생성합니다.");
 
-        articles.add(new Article(1, Util.getNowDateStr(), 1, "제목 1", "내용"));
-        articles.add(new Article(2, Util.getNowDateStr(), 2, "제목 2", "내용"));
-        articles.add(new Article(3, Util.getNowDateStr(), 3, "제목 3", "내용"));
+        articles.add(new Article(1, Util.getNowDateStr(), 1, "제목 1", "내용 1", 12));
+        articles.add(new Article(2, Util.getNowDateStr(), 2, "제목 2", "내용 2", 103));
+        articles.add(new Article(3, Util.getNowDateStr(), 2, "제목 3", "내용 3", 3));
     }
 
     public void doWrite() {
@@ -66,7 +66,7 @@ public class ArticleController extends Controller{
         System.out.printf("내용 : ");
         String body = sc.nextLine();
 
-        Article article = new Article(id, regDate,loginedMember.id, title, body);
+        Article article = new Article(id, regDate, loginedMember.id, title, body);
         articles.add(article);
 
         System.out.printf("%d번 게시물이 생성되었습니다.\n", id);
@@ -101,7 +101,7 @@ public class ArticleController extends Controller{
         for ( int i = forListArticles.size() - 1; i >= 0 ; i-- ) {
             Article article = forListArticles.get(i);
 
-            System.out.printf("%4d | %4d | %4d | %s\n", article.id, article.memberId, article.hit, article.title);
+            System.out.printf("%4d | %6d | %4d | %s\n", article.id, article.memberId, article.hit, article.title);
         }
     }
 
