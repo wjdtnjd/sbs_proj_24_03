@@ -19,6 +19,10 @@ public class Article extends Dto {
         this(id, regDate, memberId, title, body, 0);
     }
 
+    public Article(int newId, String nowDateStr) {
+        super();
+    }
+
     public void increaseHit() {
         hit++;
     }
