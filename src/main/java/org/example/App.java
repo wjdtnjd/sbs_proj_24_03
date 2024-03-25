@@ -32,8 +32,8 @@ public class App {
             }
 
             String[] cmdBits = cmd.split(" "); // article write / member join
-            String controllerName = cmdBits[0]; // article / member
-            String actionMethodName = cmdBits[1]; // write / join
+            String controllerName = cmdBits[0];       // article / member
+            String actionMethodName = cmdBits[1];    // write / join
 
             Controller controller = null;
 
@@ -46,6 +46,30 @@ public class App {
             else {
                 System.out.println("존재하지 않는 명령어입니다.");
                 continue;
+            }
+
+            String actionName = controllerName + "/" + actionMethodName;
+                                       // article / list
+            switch (actionName) {
+                case "article/write":
+                case "article/delete":
+                case "article/modify":
+                case "member/logout":
+                    if ( Controller.isLogined() == false ) {
+                        System.out.println("로그인 후 이용해주세요.");
+                        continue;
+                    }
+                    break;
+            }
+
+            switch (actionName) {
+                case "member/login":
+                case "member/join":
+                    if ( Controller.isLogined() ) {
+                        System.out.println("로그아웃 후 이용해주세요.");
+                        continue;
+                    }
+                    break;
             }
 
             controller.doAction(cmd, actionMethodName);
