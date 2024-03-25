@@ -1,7 +1,6 @@
 package org.example.dao;
 
 public class Dao {
-    public int getNewId;
     protected int lastId;
 
     public Dao() {

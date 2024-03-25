@@ -1,11 +1,9 @@
 package org.example.controller;
 
 import org.example.Container;
-import org.example.dto.Article;
 import org.example.dto.Member;
 import org.example.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,9 +42,9 @@ public class MemberController extends Controller {
     public void makeTestData() {
         System.out.println("테스트를 위한 회원 데이터를 생성합니다.");
 
-        Container.memberDao.add(new Member(1, Util.getNowDateStr(), "admin", "admin", "관리자"));
-        Container.memberDao.add(new Member(2, Util.getNowDateStr(), "user1", "user1", "홍길동"));
-        Container.memberDao.add(new Member(3, Util.getNowDateStr(), "user2", "user2", "홍길순"));
+        Container.memberDao.add(new Member(Container.memberDao.getNewId(), Util.getNowDateStr(), "admin", "admin", "관리자"));
+        Container.memberDao.add(new Member(Container.memberDao.getNewId(), Util.getNowDateStr(), "user1", "user1", "홍길동"));
+        Container.memberDao.add(new Member(Container.memberDao.getNewId(), Util.getNowDateStr(), "user2", "user2", "홍길순"));
     }
 
     public void doJoin() {
@@ -89,6 +87,7 @@ public class MemberController extends Controller {
 
         Member member = new Member(id, regDate, loginId, loginPw, name);
         Container.memberDao.add(member);
+
         System.out.printf("%d번 회원이 생성되었습니다. 환영합니다!\n", id);
     }
 
