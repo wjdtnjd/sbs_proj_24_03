@@ -12,9 +12,9 @@ public class MemberDao extends Dao {
         members = new ArrayList<>();
     }
 
-    public void add(Member member) {
+    public void join(Member member) {
         members.add(member);
-        lastId++;
+        lastId = member.id;
     }
 
     public int getMemberIndexByLoginId(String loginId) {
@@ -38,8 +38,5 @@ public class MemberDao extends Dao {
         }
 
         return members.get(index);
-    }
-
-    public void join(Member member) {
     }
 }
